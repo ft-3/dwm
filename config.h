@@ -1,6 +1,9 @@
 /* for volume key controls */
 #include <X11/XF86keysym.h>
 
+/* spiral stack */
+#include "fibonacci.c"
+
 /* See LICENSE file for copyright and license details. */
 
 /* appearance */
@@ -64,6 +67,8 @@ static const Layout layouts[] = {
 	{ "[T]",      tile },    /* first entry is default */
 	{ "[F]",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "[S]",      spiral },
+	{ "[D]",      dwindle },
 };
 
 /* key definitions */
@@ -142,6 +147,9 @@ static Key keys[] = {
 	{ 0,               XF86XK_MonBrightnessUp, spawn,          {.v = upbrightness } },
 	{ 0,             XF86XK_MonBrightnessDown, spawn,          {.v = downbrightness } },
 	{ MODKEY|ShiftMask,             XK_b,      spawn,          {.v = browser } },
+
+	{ MODKEY,                       XK_s,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_s,      setlayout,      {.v = &layouts[4]} },
 };
 
 /* button definitions */
